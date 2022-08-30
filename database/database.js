@@ -1,7 +1,8 @@
-const { Client } = require("pg");
+const { Pool } = require("pg");
 require("dotenv").config();
 
-const client = new Client(process.env.DATABASE_CONNECTION);
+// const client = new Client(process.env.DATABASE_CONNECTION);
+const pool = new Pool({ connectionString: process.env.DATABASE_CONNECTION });
 
 // async function connect(client) {
 //   try {
@@ -32,4 +33,4 @@ async function createUser(username) {
   }
 }
 
-module.exports = { client };
+module.exports = { pool };
