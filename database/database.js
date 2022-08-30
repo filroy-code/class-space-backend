@@ -22,15 +22,15 @@ const pool = new Pool({ connectionString: process.env.DATABASE_CONNECTION });
 //     `ALTER TABLE ${studentTableName} ADD email varchar(100)`
 //   );
 
-async function createUser(username) {
-  try {
-    const { rows } = await client.query(
-      `INSERT INTO users (name) VALUES (${username});`
-    );
-    console.log(rows);
-  } catch (err) {
-    console.log(err);
-  }
-}
+// async function createUser(username) {
+//   try {
+//     const { rows } = await client.query(
+//       `INSERT INTO users (name) VALUES (${username});`
+//     );
+//     console.log(rows);
+//   } catch (err) {
+//     console.log(err);
+//   }
+// }
 
 module.exports = { pool };
