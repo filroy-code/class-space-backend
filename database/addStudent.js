@@ -24,4 +24,4 @@ async function addStudent(studentID, firstname, lastname, classToAddTo, email) {
   await pool.end();
 }
 
-addStudent("666", "Lou", "Siphur", "max_gym", "lousiphur@hel.com");
+// addStudent("666", "Lou", "Siphur", "max_gym", "lousiphur@hel.com");
