@@ -1,12 +1,6 @@
 const { Pool } = require("pg");
 require("dotenv").config();
 
-// const client = new Client(process.env.DATABASE_CONNECTION);
-// const pool = new Pool({
-//   connectionString: process.env.DATABASE_CONNECTION,
-//   password: "GzZeZiO-XBy2Uas0IcQAnYxsqRPlOthg",
-// });
-
 const pool = new Pool({
   user: "ytmekuun",
   password: "GzZeZiO-XBy2Uas0IcQAnYxsqRPlOthg",
