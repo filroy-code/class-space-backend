@@ -2,7 +2,18 @@ const { Pool } = require("pg");
 require("dotenv").config();
 
 // const client = new Client(process.env.DATABASE_CONNECTION);
-const pool = new Pool({ connectionString: process.env.DATABASE_CONNECTION });
+// const pool = new Pool({
+//   connectionString: process.env.DATABASE_CONNECTION,
+//   password: "GzZeZiO-XBy2Uas0IcQAnYxsqRPlOthg",
+// });
+
+const pool = new Pool({
+  user: "ytmekuun",
+  password: "GzZeZiO-XBy2Uas0IcQAnYxsqRPlOthg",
+  host: "heffalump.db.elephantsql.com",
+  port: 5432,
+  database: "ytmekuun",
+});
 
 // async function connect(client) {
 //   try {

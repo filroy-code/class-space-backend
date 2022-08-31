@@ -3,7 +3,9 @@ var router = express.Router();
 var classSpaceController = require("../controllers/classSpaceController");
 
 /* GET home page. */
-router.get("/", classSpaceController.view_classes);
+router.get("/", classSpaceController.welcome);
+
+router.get("/:userID", classSpaceController.view_classes);
 
 router.post("/", classSpaceController.create_class);
 
