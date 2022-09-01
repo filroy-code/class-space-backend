@@ -23,9 +23,9 @@ const pool = new Pool({
 //   }
 // }
 
-// await client.query(
-//     `ALTER TABLE ${studentTableName} ADD email varchar(100)`
-//   );
+// async function doThis() {
+//   await pool.query(`ALTER TABLE "classes" ADD icon varchar(100)`);
+// }
 
 // async function createUser(username) {
 //   try {
@@ -37,5 +37,5 @@ const pool = new Pool({
 //     console.log(err);
 //   }
 // }
-
+// doThis();/
 module.exports = { pool };

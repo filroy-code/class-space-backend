@@ -1,13 +1,14 @@
 const { pool } = require("./database");
 
-async function createClass(userID, classname) {
+async function createClass(userID, classname, icon) {
   let classIdentifier = `${userID}_${classname}`;
 
   try {
     pool.connect(async function (err, client, done) {
       // inserts created class into table of all classes
-      const sqlText1 = 'INSERT INTO classes ("name", admins) VALUES ($1, $2)';
-      const values = [classIdentifier, userID];
+      const sqlText1 =
+        'INSERT INTO classes ("name", admins, icon) VALUES ($1, $2, $3)';
+      const values = [classIdentifier, userID, icon];
       await client.query(sqlText1, values);
 
       // creates a table for the new class, including assignments and students
@@ -24,8 +25,9 @@ async function createClass(userID, classname) {
     });
   } catch (err) {
     console.log(err);
+    await pool.end();
   }
-  await pool.end();
 }
 
+module.exports = { createClass };
 // createClass("max", "gym");
