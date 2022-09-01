@@ -10,7 +10,11 @@ exports.view_classes = async function (req, res, next) {
 };
 
 exports.create_class = function (req, res, next) {
-  res.json({ message: "Create a new class." });
+  res.json({
+    nameOfNewClass: req.body.nameOfNewClass,
+    icon: req.body.selectedIcon,
+    user: req.params.userID,
+  });
 };
 
 exports.class_info = function (req, res, next) {

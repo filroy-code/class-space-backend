@@ -7,7 +7,7 @@ router.get("/", classSpaceController.welcome);
 
 router.get("/:userID", classSpaceController.view_classes);
 
-router.post("/", classSpaceController.create_class);
+router.post("/:userID", classSpaceController.create_class);
 
 router.get("/:class_id", classSpaceController.class_info);
 
