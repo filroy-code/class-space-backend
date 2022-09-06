@@ -9,6 +9,6 @@ router.get("/:userID", classSpaceController.view_classes);
 
 router.post("/:userID", classSpaceController.create_class);
 
-router.get("/:class_id", classSpaceController.class_info);
+router.get("/:userID/:classID", classSpaceController.get_class_info);
 
 module.exports = router;
