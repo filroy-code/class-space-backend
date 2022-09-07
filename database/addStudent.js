@@ -20,8 +20,9 @@ async function addStudent(studentID, firstname, lastname, classToAddTo, email) {
     });
   } catch (err) {
     console.log(err);
+    await pool.end();
   }
-  await pool.end();
 }
 
+module.exports = { addStudent };
 // addStudent("666", "Lou", "Siphur", "max_gym", "lousiphur@hel.com");

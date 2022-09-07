@@ -1,6 +1,7 @@
 const { getListOfClasses } = require("../database/getListOfClasses");
 const { getClassInfo } = require("../database/getClassInfo");
 const { createClass } = require("../database/createClass");
+const { addStudent } = require("../database/addStudent");
 
 exports.welcome = function (req, res, next) {
   res.json({ message: "Hello and welcome to the backend server." });
@@ -31,4 +32,17 @@ exports.create_class = function (req, res, next) {
   } catch (err) {
     res.status(400).send(err);
   }
+};
+
+exports.add_student_or_assignment = function (req, res, next) {
+  if (req.body.formType === "student") {
+    addStudent(
+      req.body.studentID,
+      req.body.firstName,
+      req.body.lastName,
+      req.params.classID,
+      req.body.email
+    );
+  }
+  res.status(200).json(req.body);
 };

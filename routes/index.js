@@ -11,4 +11,9 @@ router.post("/:userID", classSpaceController.create_class);
 
 router.get("/:userID/:classID", classSpaceController.get_class_info);
 
+router.post(
+  "/:userID/:classID",
+  classSpaceController.add_student_or_assignment
+);
+
 module.exports = router;
