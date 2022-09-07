@@ -24,7 +24,9 @@ const pool = new Pool({
 // }
 
 // async function doThis() {
-//   await pool.query(`ALTER TABLE "classes" ADD icon varchar(100)`);
+//   await pool.query(
+//     `CREATE TABLE "students" (id varchar(100) primary key, firstname varchar(100), lastname varchar(100), email varchar(100))`
+//   );
 // }
 
 // async function createUser(username) {
@@ -37,5 +39,5 @@ const pool = new Pool({
 //     console.log(err);
 //   }
 // }
-// doThis();/
+// doThis();
 module.exports = { pool };
