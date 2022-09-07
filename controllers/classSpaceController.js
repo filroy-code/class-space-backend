@@ -2,6 +2,7 @@ const { getListOfClasses } = require("../database/getListOfClasses");
 const { getClassInfo } = require("../database/getClassInfo");
 const { createClass } = require("../database/createClass");
 const { addStudent } = require("../database/addStudent");
+const { createAssignment } = require("../database/createAssignment");
 
 exports.welcome = function (req, res, next) {
   res.json({ message: "Hello and welcome to the backend server." });
@@ -34,15 +35,27 @@ exports.create_class = function (req, res, next) {
   }
 };
 
-exports.add_student_or_assignment = function (req, res, next) {
-  if (req.body.formType === "student") {
-    addStudent(
-      req.body.studentID,
-      req.body.firstName,
-      req.body.lastName,
-      req.params.classID,
-      req.body.email
-    );
+exports.add_student_or_assignment = async function (req, res, next) {
+  try {
+    if (req.body.formType === "student") {
+      await addStudent(
+        req.body.studentID,
+        req.body.firstName,
+        req.body.lastName,
+        req.params.classID,
+        req.body.email
+      );
+    } else if (req.body.formType === "assignment") {
+      await createAssignment(
+        req.params.classID,
+        req.body.assignmentName,
+        req.body.totalMarks
+      );
+    }
+  } catch (err) {
+    console.log(err);
+    next(err);
   }
+
   res.status(200).json(req.body);
 };

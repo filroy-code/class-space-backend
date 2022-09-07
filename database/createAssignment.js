@@ -21,8 +21,9 @@ async function createAssignment(classID, assignmentName, marksOutOf) {
     });
   } catch (err) {
     console.log(err);
+    pool.end();
   }
-  pool.end();
 }
 
+module.exports = { createAssignment };
 // createAssignment("max_gym", "weight_room", 10);
