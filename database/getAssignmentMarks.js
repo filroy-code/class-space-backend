@@ -4,7 +4,7 @@ const getAssignmentMarks = async (classID, assignmentID) => {
   try {
     // adds all students who are in the class to the assignment table of the assignment being graded.
     const assignmentTable = `${classID}_${assignmentID}`;
-    const sqlText = `INSERT INTO "public".${assignmentTable} (student) SELECT (students) FROM "public".${classID} ON CONFLICT DO NOTHING`;
+    const sqlText = `INSERT INTO "public".${assignmentTable} (student) SELECT (students) FROM "public".${classID} WHERE (students) IS NOT NULL ON CONFLICT DO NOTHING`;
     await pool.query(sqlText);
 
     const sqlText2 = `SELECT * from "public".${assignmentTable}`;
