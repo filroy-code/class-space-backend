@@ -13,7 +13,7 @@ router.get("/:userID/:classID", classSpaceController.get_class_info);
 
 router.get(
   "/:userID/:classID/:assignmentID",
-  classSpaceController.get_assignment_info
+  classSpaceController.get_assignment_marks
 );
 
 router.post(

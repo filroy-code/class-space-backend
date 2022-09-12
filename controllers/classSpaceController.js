@@ -4,6 +4,7 @@ const { createClass } = require("../database/createClass");
 const { addStudent } = require("../database/addStudent");
 const { createAssignment } = require("../database/createAssignment");
 const { getAssignmentInfo } = require("../database/getAssignmentInfo");
+const { getAssignmentMarks } = require("../database/getAssignmentMarks");
 
 exports.welcome = function (req, res, next) {
   res.json({ message: "Hello and welcome to the backend server." });
@@ -19,8 +20,8 @@ exports.get_class_info = async function (req, res, next) {
   res.json({ classInfo });
 };
 
-exports.get_assignment_info = async function (req, res, next) {
-  const assignmentInfo = await getAssignmentInfo(
+exports.get_assignment_marks = async function (req, res, next) {
+  const assignmentInfo = await getAssignmentMarks(
     req.params.classID,
     req.params.assignmentID
   );
