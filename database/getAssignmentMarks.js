@@ -7,7 +7,7 @@ const getAssignmentMarks = async (classID, assignmentID) => {
     const sqlText = `INSERT INTO "public".${assignmentTable} (student) SELECT (students) FROM "public".${classID} WHERE (students) IS NOT NULL ON CONFLICT DO NOTHING`;
     await pool.query(sqlText);
 
-    const sqlText2 = `SELECT * from "public".${assignmentTable}`;
+    const sqlText2 = `SELECT * FROM "public".${assignmentTable} FULL OUTER JOIN "public"."students" ON "public".${assignmentTable}."student" = "public"."students"."id"`;
     const assignmentInfo = await pool.query(sqlText2);
     console.log(assignmentInfo.rows);
     return assignmentInfo.rows;

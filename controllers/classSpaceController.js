@@ -3,7 +3,6 @@ const { getClassInfo } = require("../database/getClassInfo");
 const { createClass } = require("../database/createClass");
 const { addStudent } = require("../database/addStudent");
 const { createAssignment } = require("../database/createAssignment");
-const { getAssignmentInfo } = require("../database/getAssignmentInfo");
 const { getAssignmentMarks } = require("../database/getAssignmentMarks");
 
 exports.welcome = function (req, res, next) {
