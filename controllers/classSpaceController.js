@@ -4,6 +4,7 @@ const { createClass } = require("../database/createClass");
 const { addStudent } = require("../database/addStudent");
 const { createAssignment } = require("../database/createAssignment");
 const { getAssignmentMarks } = require("../database/getAssignmentMarks");
+const { inputMarks } = require("../database/inputMarks");
 
 exports.welcome = function (req, res, next) {
   res.json({ message: "Hello and welcome to the backend server." });
@@ -25,6 +26,22 @@ exports.get_assignment_marks = async function (req, res, next) {
     req.params.assignmentID
   );
   res.json({ assignmentInfo });
+};
+
+exports.input_assignment_marks = async function (req, res, next) {
+  try {
+    const assignmentTableName = `${req.params.classID}_${req.params.assignmentID}`;
+    const studentArray = [];
+    const marksArray = [];
+    req.body.forEach((student) => {
+      studentArray.push(student.student.id);
+      marksArray.push(student.score);
+    });
+    await inputMarks(assignmentTableName, studentArray, marksArray);
+    res.status(200).send("Marks successfully updated!");
+  } catch (err) {
+    res.status(500).send("There was an error updating the marks.");
+  }
 };
 
 exports.create_class = function (req, res, next) {

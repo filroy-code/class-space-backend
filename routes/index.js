@@ -17,6 +17,11 @@ router.get(
 );
 
 router.post(
+  "/:userID/:classID/:assignmentID",
+  classSpaceController.input_assignment_marks
+);
+
+router.post(
   "/:userID/:classID",
   classSpaceController.add_student_or_assignment
 );

@@ -12,8 +12,9 @@ async function inputMarks(assignment, students, scores) {
     });
   } catch (err) {
     console.log(err);
+    await pool.end();
   }
-  await pool.end();
 }
 
+module.exports = { inputMarks };
 // inputMarks("max_gym_weight_room", ["123", "666"], [10, 7]);
