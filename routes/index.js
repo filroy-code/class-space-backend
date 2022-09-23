@@ -20,7 +20,7 @@ router.get(
 );
 
 router.get(
-  "/:userID/:classID/:assignmentID",
+  "/:userID/:classID/assignments/:assignmentID",
   classSpaceController.get_assignment_marks
 );
 
