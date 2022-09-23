@@ -9,7 +9,15 @@ router.get("/:userID", classSpaceController.view_classes);
 
 router.post("/:userID", classSpaceController.create_class);
 
-router.get("/:userID/:classID", classSpaceController.get_class_info);
+router.get(
+  "/:userID/:classID/assignments",
+  classSpaceController.get_class_assignment_info
+);
+
+router.get(
+  "/:userID/:classID/students",
+  classSpaceController.get_class_student_info
+);
 
 router.get(
   "/:userID/:classID/:assignmentID",

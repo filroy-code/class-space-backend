@@ -1,5 +1,8 @@
 const { getListOfClasses } = require("../database/getListOfClasses");
-const { getClassInfo } = require("../database/getClassInfo");
+const {
+  getClassAssignmentInfo,
+} = require("../database/getClassAssignmentInfo");
+const { getClassStudentInfo } = require("../database/getClassStudentInfo");
 const { createClass } = require("../database/createClass");
 const { addStudent } = require("../database/addStudent");
 const { createAssignment } = require("../database/createAssignment");
@@ -15,8 +18,13 @@ exports.view_classes = async function (req, res, next) {
   res.json({ classList });
 };
 
-exports.get_class_info = async function (req, res, next) {
-  const classInfo = await getClassInfo(req.params.classID);
+exports.get_class_assignment_info = async function (req, res, next) {
+  const classInfo = await getClassAssignmentInfo(req.params.classID);
+  res.json({ classInfo });
+};
+
+exports.get_class_student_info = async function (req, res, next) {
+  const classInfo = await getClassStudentInfo(req.params.classID);
   res.json({ classInfo });
 };
 

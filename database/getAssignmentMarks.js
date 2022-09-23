@@ -9,7 +9,6 @@ const getAssignmentMarks = async (classID, assignmentID) => {
 
     const sqlText2 = `SELECT * FROM "public".${assignmentTable} FULL OUTER JOIN "public"."students" ON "public".${assignmentTable}."student" = "public"."students"."id"`;
     const assignmentInfo = await pool.query(sqlText2);
-    console.log(assignmentInfo.rows);
     return assignmentInfo.rows;
   } catch (err) {
     console.log(err);
