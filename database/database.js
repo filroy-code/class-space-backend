@@ -23,11 +23,15 @@ const pool = new Pool({
 //   }
 // }
 
-// async function doThis() {
-//   await pool.query(
-//     `CREATE TABLE "students" (id varchar(100) primary key, firstname varchar(100), lastname varchar(100), email varchar(100))`
-//   );
-// }
+async function createDatabase() {
+  await pool.query(
+    `CREATE TABLE IF NOT EXISTS "students" (id varchar(100) primary key, firstname varchar(100), lastname varchar(100), email varchar(100))`
+  );
+
+  await pool.query(
+    `CREATE TABLE IF NOT EXISTS "classes" (id serial primary key, name varchar(100), admins varchar(100), icon varchar(100))`
+  );
+}
 
 // async function createUser(username) {
 //   try {
@@ -39,5 +43,5 @@ const pool = new Pool({
 //     console.log(err);
 //   }
 // }
-// doThis();
+createDatabase();
 module.exports = { pool };

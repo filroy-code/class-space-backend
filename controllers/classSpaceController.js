@@ -89,6 +89,7 @@ exports.add_student_or_assignment = async function (req, res, next) {
       res.status(200).json(req.body);
     }
   } catch (err) {
+    res.status(500).send("There was an error.");
     console.log(err);
     next(err);
   }

@@ -25,7 +25,7 @@ router.get(
 );
 
 router.post(
-  "/:userID/:classID/:assignmentID",
+  "/:userID/:classID/assignments/:assignmentID",
   classSpaceController.input_assignment_marks
 );
 
