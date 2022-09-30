@@ -15,18 +15,33 @@ exports.welcome = function (req, res, next) {
 };
 
 exports.view_classes = async function (req, res, next) {
-  const classList = await getListOfClasses(req.params.userID);
-  res.json({ classList });
+  try {
+    const classList = await getListOfClasses(req.params.userID);
+    res.status(200).json({ classList });
+  } catch (err) {
+    res.status(500).send("There was an error");
+    console.log(err);
+  }
 };
 
 exports.get_class_assignment_info = async function (req, res, next) {
-  const classInfo = await getClassAssignmentInfo(req.params.classID);
-  res.json({ classInfo });
+  try {
+    const classInfo = await getClassAssignmentInfo(req.params.classID);
+    res.status(200).json({ classInfo });
+  } catch (err) {
+    res.status(500).send("There was an error.");
+    console.log(err);
+  }
 };
 
 exports.get_class_student_info = async function (req, res, next) {
-  const classInfo = await getClassStudentInfo(req.params.classID);
-  res.json({ classInfo });
+  try {
+    const classInfo = await getClassStudentInfo(req.params.classID);
+    res.status(200).json({ classInfo });
+  } catch (err) {
+    res.status(500).send("There was an error");
+    console.log(err);
+  }
 };
 
 exports.update_student_details = async function (req, res, next) {
@@ -41,6 +56,7 @@ exports.update_student_details = async function (req, res, next) {
     res.status(200).json(updateInfo);
   } catch (err) {
     res.status(500).send("There was an error.");
+    console.log(err);
   }
 };
 
@@ -53,6 +69,7 @@ exports.get_assignment_marks = async function (req, res, next) {
     res.status(200).json({ assignmentInfo });
   } catch (err) {
     res.status(500).send("There was an error.");
+    console.log(err);
   }
 };
 
@@ -68,7 +85,8 @@ exports.input_assignment_marks = async function (req, res, next) {
     await inputMarks(assignmentTableName, studentArray, marksArray);
     res.status(200).send("Marks successfully updated!");
   } catch (err) {
-    res.status(500).send("There was an error updating the marks.");
+    res.status(500).send("There was an error.");
+    console.log(err);
   }
 };
 
@@ -85,7 +103,8 @@ exports.create_class = function (req, res, next) {
       user: req.params.userID,
     });
   } catch (err) {
-    res.status(400).send(err);
+    res.status(500).send("There was an error.");
+    console.log(err);
   }
 };
 
@@ -94,6 +113,7 @@ exports.get_class_summary = async function (req, res, next) {
     console.log(req.params);
   } catch (err) {
     res.status(500).send("There was an error");
+    console.log(err);
   }
 };
 
@@ -119,6 +139,5 @@ exports.add_student_or_assignment = async function (req, res, next) {
   } catch (err) {
     res.status(500).send("There was an error.");
     console.log(err);
-    next(err);
   }
 };
