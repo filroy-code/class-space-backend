@@ -30,14 +30,18 @@ exports.get_class_student_info = async function (req, res, next) {
 };
 
 exports.update_student_details = async function (req, res, next) {
-  const updateInfo = await updateStudentDetails(
-    req.params.studentID,
-    req.body.firstname,
-    req.body.lastname,
-    req.body.email,
-    req.body.id
-  );
-  res.status(200).json(updateInfo);
+  try {
+    const updateInfo = await updateStudentDetails(
+      req.params.studentID,
+      req.body.firstname,
+      req.body.lastname,
+      req.body.email,
+      req.body.id
+    );
+    res.status(200).json(updateInfo);
+  } catch (err) {
+    res.status(500).send("There was an error.");
+  }
 };
 
 exports.get_assignment_marks = async function (req, res, next) {
