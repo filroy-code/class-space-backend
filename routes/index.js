@@ -19,6 +19,11 @@ router.get(
   classSpaceController.get_class_student_info
 );
 
+router.put(
+  "/:userID/:classID/students/:studentID",
+  classSpaceController.update_student_details
+);
+
 router.get(
   "/:userID/:classID/assignments/:assignmentID",
   classSpaceController.get_assignment_marks

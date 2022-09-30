@@ -8,6 +8,7 @@ const { addStudent } = require("../database/addStudent");
 const { createAssignment } = require("../database/createAssignment");
 const { getAssignmentMarks } = require("../database/getAssignmentMarks");
 const { inputMarks } = require("../database/inputMarks");
+const { updateStudentDetails } = require("../database/updateStudentDetails");
 
 exports.welcome = function (req, res, next) {
   res.json({ message: "Hello and welcome to the backend server." });
@@ -26,6 +27,17 @@ exports.get_class_assignment_info = async function (req, res, next) {
 exports.get_class_student_info = async function (req, res, next) {
   const classInfo = await getClassStudentInfo(req.params.classID);
   res.json({ classInfo });
+};
+
+exports.update_student_details = async function (req, res, next) {
+  const updateInfo = await updateStudentDetails(
+    req.params.studentID,
+    req.body.firstname,
+    req.body.lastname,
+    req.body.email,
+    req.body.id
+  );
+  res.status(200).json(updateInfo);
 };
 
 exports.get_assignment_marks = async function (req, res, next) {
