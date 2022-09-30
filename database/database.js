@@ -9,20 +9,6 @@ const pool = new Pool({
   database: "ytmekuun",
 });
 
-// async function connect(client) {
-//   try {
-//     await client.connect();
-//     console.log("Client connected.");
-
-//     // await createClass("fillie", "Math");
-//     await client.end();
-//   } catch (err) {
-//     console.log(err);
-//   } finally {
-//     client.end();
-//   }
-// }
-
 async function createDatabase() {
   await pool.query(
     `CREATE TABLE IF NOT EXISTS "students" (id varchar(100) primary key, firstname varchar(100), lastname varchar(100), email varchar(100))`
@@ -43,5 +29,6 @@ async function createDatabase() {
 //     console.log(err);
 //   }
 // }
+
 createDatabase();
 module.exports = { pool };
