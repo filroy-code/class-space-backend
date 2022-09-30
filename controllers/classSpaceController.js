@@ -45,11 +45,15 @@ exports.update_student_details = async function (req, res, next) {
 };
 
 exports.get_assignment_marks = async function (req, res, next) {
-  const assignmentInfo = await getAssignmentMarks(
-    req.params.classID,
-    req.params.assignmentID
-  );
-  res.json({ assignmentInfo });
+  try {
+    const assignmentInfo = await getAssignmentMarks(
+      req.params.classID,
+      req.params.assignmentID
+    );
+    res.status(200).json({ assignmentInfo });
+  } catch (err) {
+    res.status(500).send("There was an error.");
+  }
 };
 
 exports.input_assignment_marks = async function (req, res, next) {
@@ -82,6 +86,14 @@ exports.create_class = function (req, res, next) {
     });
   } catch (err) {
     res.status(400).send(err);
+  }
+};
+
+exports.get_class_summary = async function (req, res, next) {
+  try {
+    console.log(req.params);
+  } catch (err) {
+    res.status(500).send("There was an error");
   }
 };
 

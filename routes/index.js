@@ -34,6 +34,8 @@ router.post(
   classSpaceController.input_assignment_marks
 );
 
+router.get("/:userID/:classID/summary", classSpaceController.get_class_summary);
+
 router.post(
   "/:userID/:classID",
   classSpaceController.add_student_or_assignment
