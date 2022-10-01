@@ -10,6 +10,7 @@ const { getAssignmentMarks } = require("../database/getAssignmentMarks");
 const { inputMarks } = require("../database/inputMarks");
 const { updateStudentDetails } = require("../database/updateStudentDetails");
 const { getClassSummary } = require("../database/getClassSummary");
+const { deleteClass } = require("../database/deleteClass");
 
 exports.welcome = function (req, res, next) {
   res.json({ message: "Hello and welcome to the backend server." });
@@ -105,6 +106,20 @@ exports.create_class = function (req, res, next) {
     });
   } catch (err) {
     res.status(500).send("There was an error.");
+    console.log(err);
+  }
+};
+
+exports.delete_class = async function (req, res, next) {
+  try {
+    let deletion = await deleteClass(req.body.classID);
+    if (deletion) {
+      res.status(200).send(deletion);
+    } else {
+      res.status(500).send("There was an error deleting the class.");
+    }
+  } catch (err) {
+    res.status(500).send("There was an error");
     console.log(err);
   }
 };

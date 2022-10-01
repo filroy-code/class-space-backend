@@ -41,4 +41,6 @@ router.post(
   classSpaceController.add_student_or_assignment
 );
 
+router.delete("/:userID/:classID", classSpaceController.delete_class);
+
 module.exports = router;
