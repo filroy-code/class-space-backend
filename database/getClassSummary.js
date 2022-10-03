@@ -2,7 +2,7 @@ const { pool } = require("./database");
 
 const getClassSummary = async (classID) => {
   try {
-    const sqlText = `SELECT * FROM "public".${classID} FULL OUTER JOIN "public"."students" ON "public".${classID}."students" = "public"."students"."id" ORDER BY "lastname"`;
+    const sqlText = `SELECT * FROM "public".${classID} LEFT JOIN "public"."students" ON "public".${classID}."students" = "public"."students"."id"`;
     const classInfo = await pool.query(sqlText);
     return classInfo.rows;
   } catch (err) {

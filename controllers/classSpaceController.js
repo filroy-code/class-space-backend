@@ -112,7 +112,7 @@ exports.create_class = function (req, res, next) {
 
 exports.delete_class = async function (req, res, next) {
   try {
-    let deletion = await deleteClass(req.body.classID);
+    let deletion = await deleteClass(req.params.classID);
     if (deletion) {
       res.status(200).send(deletion);
     } else {
