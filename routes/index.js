@@ -36,6 +36,8 @@ router.post(
 
 router.get("/:userID/:classID/summary", classSpaceController.get_class_summary);
 
+router.put("/:userID/:classID/summary", classSpaceController.adjust_weighting);
+
 router.post(
   "/:userID/:classID",
   classSpaceController.add_student_or_assignment

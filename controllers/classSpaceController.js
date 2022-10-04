@@ -11,6 +11,7 @@ const { inputMarks } = require("../database/inputMarks");
 const { updateStudentDetails } = require("../database/updateStudentDetails");
 const { getClassSummary } = require("../database/getClassSummary");
 const { deleteClass } = require("../database/deleteClass");
+const { adjustWeighting } = require("../database/adjustWeighting");
 
 exports.welcome = function (req, res, next) {
   res.json({ message: "Hello and welcome to the backend server." });
@@ -127,6 +128,15 @@ exports.delete_class = async function (req, res, next) {
 exports.get_class_summary = async function (req, res, next) {
   try {
     res.status(200).json(await getClassSummary(req.params.classID));
+  } catch (err) {
+    res.status(500).send("There was an error");
+    console.log(err);
+  }
+};
+
+exports.adjust_weighting = async function (req, res, next) {
+  try {
+    res.status(200).json(await adjustWeighting(req.params.classID, req.body));
   } catch (err) {
     res.status(500).send("There was an error");
     console.log(err);
