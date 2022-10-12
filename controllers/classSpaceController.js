@@ -12,6 +12,9 @@ const { updateStudentDetails } = require("../database/updateStudentDetails");
 const { getClassSummary } = require("../database/getClassSummary");
 const { deleteClass } = require("../database/deleteClass");
 const { adjustWeighting } = require("../database/adjustWeighting");
+const {
+  getAssignmentMarksDistribution,
+} = require("../database/getAssignmentMarksDistribution");
 
 exports.welcome = function (req, res, next) {
   res.json({ message: "Hello and welcome to the backend server." });
@@ -87,6 +90,19 @@ exports.input_assignment_marks = async function (req, res, next) {
     });
     await inputMarks(assignmentTableName, studentArray, marksArray);
     res.status(200).send("Marks successfully updated!");
+  } catch (err) {
+    res.status(500).send("There was an error.");
+    console.log(err);
+  }
+};
+
+exports.get_assignment_marks_distribution = async function (req, res, next) {
+  try {
+    const assignmentInfo = await getAssignmentMarksDistribution(
+      req.params.classID,
+      req.params.assignmentID
+    );
+    res.status(200).json({ assignmentInfo });
   } catch (err) {
     res.status(500).send("There was an error.");
     console.log(err);

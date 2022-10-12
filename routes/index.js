@@ -34,6 +34,11 @@ router.post(
   classSpaceController.input_assignment_marks
 );
 
+router.get(
+  "/:userID/:classID/assignments/:assignmentID/distribution",
+  classSpaceController.get_assignment_marks_distribution
+);
+
 router.get("/:userID/:classID/summary", classSpaceController.get_class_summary);
 
 router.put("/:userID/:classID/summary", classSpaceController.adjust_weighting);

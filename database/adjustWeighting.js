@@ -19,6 +19,7 @@ async function adjustWeighting(classID, assignmentData) {
         const sqlText = `INSERT INTO ${classID}(assignments, assignment_weight) VALUES ($1, $2) ON CONFLICT (assignments) DO UPDATE SET assignment_weight = $2`;
         await client.query(sqlText, values);
       }
+      client.release();
       done();
     });
   } catch (err) {
