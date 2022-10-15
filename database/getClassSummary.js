@@ -13,7 +13,11 @@ const getClassSummary = async (classID) => {
       classInfo.rows.map(async (entry) => {
         if (entry.assignments && !assignments.includes(entry.assignments)) {
           assignments.push(entry.assignments);
-          assignmentMarks[`${entry.assignments}`] = { scores: [], outof: null };
+          assignmentMarks[`${entry.assignments}`] = {
+            scores: [],
+            outof: undefined,
+            weight: entry.assignment_weight,
+          };
 
           let marks = await getAssignmentMarks(classID, entry.assignments);
           marks.forEach((datum) => {
@@ -27,6 +31,10 @@ const getClassSummary = async (classID) => {
             if (datum.outof) {
               assignmentMarks[`${entry.assignments}`].outof = datum.outof;
             }
+            // if (datum.assignment_weight) {
+            //   assignmentMarks[`${entry.assignments}`].weight =
+            //     datum.assignment_weight;
+            // }
           });
         }
         return assignmentMarks;
@@ -51,6 +59,22 @@ const getClassSummary = async (classID) => {
       assignmentAnalysis.push(analysis);
     }
 
+    let aggregator = [];
+    for (let i = 0; i < assignments.length; i++) {
+      let assignmentName = assignmentAnalysis[i].name;
+      let scoreAverage =
+        assignmentAnalysis[i].average / parseInt(assignmentAnalysis[i].outof);
+      let scoreWeight = marksData[0][`${assignmentName}`].weight;
+      aggregator.push({
+        assignmentName: assignmentAnalysis[i].name,
+        assignmentAverage: scoreAverage,
+        assignmentWeight: scoreWeight,
+      });
+    }
+
+    console.log(aggregator);
+
+    // console.log(assignmentAnalysis);
     return { classInfo: classInfo.rows, marksData: assignmentAnalysis };
   } catch (err) {
     console.log(err);

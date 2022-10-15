@@ -17,7 +17,6 @@ async function createAssignment(classID, assignmentName, marksOutOf) {
       if (err) {
         console.log(err);
       }
-      client.release();
       done();
     });
   } catch (err) {
