@@ -72,10 +72,30 @@ const getClassSummary = async (classID) => {
       });
     }
 
-    console.log(aggregator);
+    let overall = 0;
+    let acheivedMarks = [];
+    let totalWeight = 0;
+    aggregator.forEach((assignment) => {
+      totalWeight += assignment.assignmentWeight;
+    });
+
+    aggregator.forEach((assignment) => {
+      let assignmentValueMultiplier = assignment.assignmentWeight / totalWeight;
+      let assignmentValue =
+        assignment.assignmentAverage * assignmentValueMultiplier;
+      acheivedMarks.push(assignmentValue);
+    });
+
+    acheivedMarks.forEach((mark) => {
+      overall += mark;
+    });
 
     // console.log(assignmentAnalysis);
-    return { classInfo: classInfo.rows, marksData: assignmentAnalysis };
+    return {
+      classInfo: classInfo.rows,
+      marksData: assignmentAnalysis,
+      overall: overall,
+    };
   } catch (err) {
     console.log(err);
   }
