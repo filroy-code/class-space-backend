@@ -11,11 +11,11 @@ const pool = new Pool({
 
 async function createDatabase() {
   await pool.query(
-    `CREATE TABLE IF NOT EXISTS "students" (id varchar(100) primary key, firstname varchar(100), lastname varchar(100), email varchar(100))`
+    `CREATE TABLE IF NOT EXISTS "students" (id serial primary key, firstname varchar(30), lastname varchar(30), email varchar(30), external_id varchar(30))`
   );
 
   await pool.query(
-    `CREATE TABLE IF NOT EXISTS "classes" (id serial primary key, name varchar(100), admins varchar(100), icon varchar(100))`
+    `CREATE TABLE IF NOT EXISTS "classes" (id serial primary key, name varchar(50), admins varchar(30), icon varchar(30))`
   );
 }
 
