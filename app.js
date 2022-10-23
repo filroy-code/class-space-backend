@@ -20,7 +20,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 const corsOptions = {
-  "Access-Control-Allow-Origin": "http://localhost:3000",
+  "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Methods": "GET, DELETE, POST, PUT",
   "Access-Control-Allow-Headers": "",
 };
