@@ -20,9 +20,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 const corsOptions = {
-  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Origin": "https://class-space.herokuapp.com",
   "Access-Control-Allow-Methods": "GET, DELETE, POST, PUT",
-  "Access-Control-Allow-Headers": "*",
+  "Access-Control-Allow-Headers": "",
 };
 
 app.use(cors(corsOptions));
