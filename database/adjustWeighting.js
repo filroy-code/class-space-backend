@@ -16,7 +16,7 @@ async function adjustWeighting(classID, assignmentData) {
     pool.connect(async function (err, client, done) {
       for (i = 0; i < assignmentNames.length; i++) {
         let values = [assignmentNames[i], assignmentWeights[i]];
-        const sqlText = `INSERT INTO ${classID}(assignments, assignment_weight) VALUES ($1, $2) ON CONFLICT (assignments) DO UPDATE SET assignment_weight = $2`;
+        const sqlText = `INSERT INTO "public"."${classID}" (assignments, assignment_weight) VALUES ($1, $2) ON CONFLICT (assignments) DO UPDATE SET assignment_weight = $2`;
         await client.query(sqlText, values);
       }
       done();

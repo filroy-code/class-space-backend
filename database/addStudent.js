@@ -3,7 +3,7 @@ const { pool } = require("./database");
 async function addStudent(studentID, firstname, lastname, classToAddTo, email) {
   try {
     pool.connect(async function (err, client, done) {
-      const sqlText = `INSERT INTO ${classToAddTo} (students) VALUES ('${studentID}')`;
+      const sqlText = `INSERT INTO "public"."${classToAddTo}" (students) VALUES ('${studentID}')`;
       await client.query(sqlText);
 
       const sqlText2 = `INSERT INTO "students" (id, firstname, lastname, email) VALUES ($1, $2, $3, $4)`;

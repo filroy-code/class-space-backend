@@ -3,7 +3,7 @@ const { getAssignmentMarks } = require("./getAssignmentMarks");
 
 const getClassSummary = async (classID) => {
   try {
-    const sqlText = `SELECT * FROM "public".${classID} LEFT JOIN "public"."students" ON "public".${classID}."students" = "public"."students"."id"`;
+    const sqlText = `SELECT * FROM "public"."${classID}" LEFT JOIN "public"."students" ON "public"."${classID}"."students" = "public"."students"."id"`;
     const classInfo = await pool.query(sqlText);
     let assignmentMarks = {};
     let assignments = [];

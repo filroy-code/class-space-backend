@@ -2,7 +2,7 @@ const { pool } = require("./database");
 
 const deleteClass = async (classID) => {
   try {
-    const sqlText = `DROP TABLE IF EXISTS "public".${classID} CASCADE`;
+    const sqlText = `DROP TABLE IF EXISTS "public"."${classID}" CASCADE`;
     await pool.query(sqlText);
 
     const sqlText2 = `DELETE FROM "public"."classes" WHERE name = $1`;

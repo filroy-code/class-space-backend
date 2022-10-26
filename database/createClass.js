@@ -12,11 +12,11 @@ async function createClass(userID, classname, icon) {
       await client.query(sqlText1, values);
 
       // creates a table for the new class, including assignments and students
-      const sqlText2 = `CREATE TABLE ${classIdentifier} (students text UNIQUE, assignments text UNIQUE, assignment_weight integer, admins text)`;
+      const sqlText2 = `CREATE TABLE "${classIdentifier}" (students text UNIQUE, assignments text UNIQUE, assignment_weight integer, admins text)`;
       await client.query(sqlText2);
 
       // adds the teacher who created the class as an admin in that class
-      const sqlText3 = `INSERT INTO ${classIdentifier} (admins) VALUES ('${userID}')`;
+      const sqlText3 = `INSERT INTO "public"."${classIdentifier}" (admins) VALUES ('${userID}')`;
       await client.query(sqlText3);
       if (err) {
         console.log(err);
